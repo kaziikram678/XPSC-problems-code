@@ -18,8 +18,15 @@ int main()
             cin>>x;
             v.push_back(x);
         }
+        int f = 0;
+        for(int i=0;i<n;i++)
+        {
+            f |= is_sorted(v.begin(), v.end());
+            rotate(v.begin(),v.begin()+1,v.end());
+        }
 
-        
+        if(f==0) cout<<"NO"<<endl;
+        else cout<<"YES"<<endl;
     }
     return 0;
 }

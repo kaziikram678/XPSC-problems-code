@@ -1,0 +1,32 @@
+class Solution {
+private:
+   void f(vector<int>& nums, vector<int>& a, vector<vector<int>>& v,
+      int vv[]) {
+      if (nums.size() == a.size()) {
+         v.push_back(a);
+         return;
+      }
+
+      for (int i = 0; i < nums.size(); i++) {
+         if (vv[i] == 0) {
+            a.push_back(nums[i]);
+            vv[i] = 1;
+            f(nums, a, v, vv);
+            vv[i] = 0;
+            a.pop_back();
+         }
+      }
+   }
+
+public:
+   vector<vector<int>> permute(vector<int>& nums) {
+      vector<vector<int>> v;
+      vector<int> a;
+      int vv[nums.size()];
+      for (int i = 0; i < nums.size(); i++) {
+         vv[i] = 0;
+      }
+      f(nums, a, v, vv);
+      return v;
+   }
+};
